@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static float [] countDecimals(int sizeOfArray, int negativeZeroPositive[]){
+        
+        float [] result = new float [3];
+        
+        for (int i = 0; i < negativeZeroPositive.length ; i++){
+            result[i] = (float)negativeZeroPositive[i] / (float)sizeOfArray ;
+        }
+        return result;
+    }
+    public static int [] countNumbers( int arr[]){
+        int [] negativeZeroPositive = new int [3];
+        
+        for(int i =0; i<arr.length; i++){
+            if (arr[i] < 0) negativeZeroPositive[1]++;
+            else if(arr[i] == 0) negativeZeroPositive[2]++;
+            else if(arr[i] > 0) negativeZeroPositive[0]++;
+        }
+        
+        return negativeZeroPositive;
+    }
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int arr[] = new int[n];
+        for(int arr_i=0; arr_i < n; arr_i++){
+            arr[arr_i] = in.nextInt();
+        }
+       
+        float [] decimals = countDecimals(n, countNumbers (arr));
+        for (int i =0; i<decimals.length; i++){
+            System.out.println (decimals[i]);
+        }
+    }
+}
