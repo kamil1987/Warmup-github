@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static long [] countSums(int[] arr){
+        long [] sums = new long [5];
+        for(int i=0; i < 5; i++){
+            for(int y=0; y < 5; y++){
+                if (i == y) continue;
+                sums[i] += arr[y];
+            }
+        }
+        return sums;
+    }
+    
+    public static long [] findMaxMin (long [] sums){
+        long [] MaxMin = new long [2];
+        MaxMin[0] = sums [0];
+        MaxMin[1] = sums [1];
+        for(int i=0; i < sums.length; i++){
+            if (sums[i] > MaxMin[0]) MaxMin[0] = sums[i];
+            if (sums[i] < MaxMin[1]) MaxMin[1] = sums[i];
+        }
+        return MaxMin;
+    }
+    public static void printResult(long [] sums){
+        System.out.print(sums[1] + " " + sums[0]);
+    }
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int[] arr = new int[5];
+        for(int arr_i=0; arr_i < 5; arr_i++){
+            arr[arr_i] = in.nextInt();
+        }
+        printResult ( findMaxMin( countSums(arr) ) );
+        
+    }
+}
